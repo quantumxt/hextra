@@ -12,7 +12,7 @@
             <div class="outer-ci-card">
               <div class="ci-card">
                 {{ with .Resources.GetMatch "cover.*" }}
-                  {{ with .Resize "400x" }}
+                  {{ with .Resize "800x" }}
                     <img src="{{ .RelPermalink }}" width="280px" height="{{ .Height }}" alt="">
                   {{ end }}
                 {{ else }}
