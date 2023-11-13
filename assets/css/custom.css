@@ -1,0 +1,36 @@
+.outer-ci-card {
+    padding: 5px 5px;
+    float: left;
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.ci-card {
+    display: flex;
+}
+
+div.ci-card img {
+    padding-top: 2rem;
+    object-position: center;
+    object-fit: cover;
+}
+
+.ci-card-desc {
+    min-height: 100%;
+    width: 100%;
+    float: right;
+    padding-left: 20px;
+}
+
+@media only screen and (max-width: 37.5em) {
+    div.ci-card img {
+      width: 100%;
+      height: auto;
+    }
+    
+    .ci-card {
+       flex-direction: column;
+    }
+}

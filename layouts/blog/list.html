@@ -9,21 +9,34 @@
         <div class="content">{{ .Content }}</div>
         {{ range .Pages.ByDate.Reverse }}
           <div class="mb-10">
-            <h3><a style="color: inherit; text-decoration: none;" class="block font-semibold mt-8 text-2xl " href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-            {{- if site.Params.blog.list.displayTags -}}
-              {{ with .Params.tags }}
-                <p class="opacity-50 text-sm leading-7">
-                  {{- range . }}<a class="inline-block mr-2">#{{ . }}</a>{{ end -}}
-                </p>
-              {{ end -}}
-            {{- end -}}
-            <p class="opacity-80 mt-4 leading-7">{{- partial "utils/page-description" . -}}</p>
-            <p class="opacity-80 mt-1 leading-7">
-              <a class="text-[color:hsl(var(--primary-hue),100%,50%)] underline underline-offset-2 decoration-from-font" href="{{ .RelPermalink }}">
-                {{- $readMore -}}
-              </a>
-            </p>
-            <p class="opacity-50 text-sm mt-4 leading-7">{{ partial "utils/format-date" .Date }}</p>
+            <div class="outer-ci-card">
+              <div class="ci-card">
+                {{ with .Resources.GetMatch "cover.*" }}
+                  {{ with .Resize "800x" }}
+                    <img src="{{ .RelPermalink }}" width="280px" height="{{ .Height }}" alt="">
+                  {{ end }}
+                {{ else }}
+                  <img src="/cover.png" width="280px" height="auto" alt="Placeholder">
+                {{ end }}
+                <div class="ci-card-desc">
+                    <h3><a style="color: inherit; text-decoration: none;" class="block font-semibold mt-8 text-2xl " href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+                    {{- if site.Params.blog.list.displayTags -}}
+                      {{ with .Params.tags }}
+                        <p class="opacity-50 text-sm leading-7">
+                          {{- range . }}<a class="inline-block mr-2">#{{ . }}</a>{{ end -}}
+                        </p>
+                      {{ end -}}
+                    {{- end -}}
+                    <p class="opacity-80 mt-4 leading-7">{{- partial "utils/page-description" . -}}</p>
+                    <p class="opacity-80 mt-1 leading-7">
+                      <a class="text-[color:hsl(var(--primary-hue),100%,50%)] underline underline-offset-2 decoration-from-font" href="{{ .RelPermalink }}">
+                        {{- $readMore -}}
+                      </a>
+                    </p>
+                    <p class="opacity-50 text-sm mt-4 leading-7">{{ partial "utils/format-date" .Date }}</p>
+                </div>
+              </div>
+            </div>
           </div>
         {{ end }}
       </main>
